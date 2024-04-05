@@ -1,0 +1,6 @@
+relpaths: 
+  - anat/sub-01_ses-01_inv-400_IRT1.nii.gz
+  - anat/sub-01_ses-01_inv-800_IRT1.nii.gz
+basedir: 
+  class: Directory
+  location: ../rawdata/sub-01/ses-01/
