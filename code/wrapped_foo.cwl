@@ -3,12 +3,6 @@ class: Workflow
 
 requirements:
   InlineJavascriptRequirement: {}
-  LoadListingRequirement:
-    loadListing: deep_listing
-  InitialWorkDirRequirement:
-    listing:
-      - entryname: basedir
-        entry: $(inputs.basedir)
 
 inputs:
   basedir: Directory
