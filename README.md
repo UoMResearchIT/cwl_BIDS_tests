@@ -1,3 +1,5 @@
+# Tests to figure out how to use CWL in a complex directory structure
+
 ## Wait until CWLTool gets fixed
 
 [**document what --basedir does #278**](https://github.com/common-workflow-language/cwltool/issues/278) (open since 2017)
@@ -18,7 +20,7 @@ cwltool --outdir derivatives/sub-01/foo code/foo.cwl rawdata/sub-01/ses-01/foo.y
 
 ## TODO: Config file templates
 
-Copy parsed instances of the input file to the working directory.
+Copy Jinja-parsed instances of the input file to the working directory.
 
 **PROS**: provenance record
 **CONS**: file copies everywhere, one config per session, requires external templating engine
