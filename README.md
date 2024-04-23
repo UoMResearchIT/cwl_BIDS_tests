@@ -11,12 +11,12 @@ Place the input file where the relative paths make sense. e.g.:
 
 ```bash
 cd study
-ln -sr code/foo.yml rawdata/sub-01/ses-01/
-cwltool --outdir derivatives/sub-01/foo code/foo.cwl rawdata/sub-01/ses-01/foo.yml
+ln -sr code/dummy.yml rawdata/sub-01/ses-01/
+cwltool --outdir derivatives/sub-01/dummy code/dummy.cwl rawdata/sub-01/ses-01/dummy.yml
 ```
 
 **PROS**: simple, developer-friendly
-**CONS**: file copies everywhere, , one config per session, input file is not configurable
+**CONS**: file copies everywhere, one config per session, input file is not configurable
 
 ## TODO: Config file templates
 
@@ -30,7 +30,7 @@ Copy Jinja-parsed instances of the input file to the working directory.
 Use `relpaths2files.cwl` to stage files in a complex tree to working directory.
 
 ```bash
-cwltool --outdir derivatives/sub-02/foo wrapped_foo.cwl wrapped_foo.yml
+cwltool --outdir derivatives/sub-02/dummy code/wrapped_dummy.cwl code/wrapped_dummy.yml
 ```
 
 **PROS**: potential for workflow config (scatter over Directories?), might need

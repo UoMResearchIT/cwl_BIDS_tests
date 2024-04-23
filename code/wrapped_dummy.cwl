@@ -9,9 +9,9 @@ inputs:
   files: string[]
 
 outputs: 
-  output:
+  log:
     type: File
-    outputSource: foo/output
+    outputSource: dummy/log
 
 steps:
   relpaths2files:
@@ -20,8 +20,8 @@ steps:
       basedir: basedir
       relpaths: files
     out: [files]
-  foo:
-    run: foo.cwl
+  dummy:
+    run: dummy.cwl
     in:
        files: relpaths2files/files
-    out: [output]
+    out: [log]

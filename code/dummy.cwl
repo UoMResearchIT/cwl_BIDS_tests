@@ -2,14 +2,14 @@ cwlVersion: v1.2
 class: CommandLineTool
 baseCommand: ls
 
-stdout: foo.out
+stdout: dummy.out
 
 inputs:
   files:
     type: File[]
     inputBinding: {}
 outputs:
-  output:
+  log:
     type: File
     outputBinding:
-      glob: foo.out
+      glob: dummy.out
