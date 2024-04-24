@@ -1,0 +1,13 @@
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+cwltool = "^3.1.20240404144621"
+
+[tool.poetry.group.dev.dependencies]
+cwltest = "^2.5.20240304113812"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
