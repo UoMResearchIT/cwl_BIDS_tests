@@ -1,0 +1,16 @@
+
+- id: dummy
+  doc: Using symlinked input file
+  tool: ../code/dummy.cwl
+  job: ../rawdata/sub-01/ses-01/dummy.yml
+  tags: [ alternatives ]
+  output:
+    log: { class: File, basename: "dummy.out" }
+
+- id: wrapped
+  doc: Using from_folder
+  tool: ../code/dummy_from_folder.cwl
+  job: ../code/dummy_from_folder.yml
+  tags: [ alternatives ]
+  output:
+    log: { class: File, basename: "dummy.out" }
