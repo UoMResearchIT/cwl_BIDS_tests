@@ -14,8 +14,8 @@ outputs:
     outputSource: dummy/log
 
 steps:
-  relpaths2files:
-    run: relpaths2files.cwl
+  from_folder:
+    run: from_folder.cwl
     in:
       basedir: basedir
       relpaths: files
@@ -23,5 +23,5 @@ steps:
   dummy:
     run: dummy.cwl
     in:
-       files: relpaths2files/files
+       files: from_folder/files
     out: [log]
