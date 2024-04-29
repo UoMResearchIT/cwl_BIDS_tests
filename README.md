@@ -83,8 +83,12 @@ or the workflow modified to accept wildcards/configurable file names.
 
 ### *inputs_object* templates (TODO)
 
-Input files could be e.g. Jinja-parsed instances of a template, `code/dummy_template.yml`,
-copied to either the data directory or the output directory.
+Input files could be e.g. Jinja-parsed instances of a template,
+copied to either the data directory or the output directory, e.g.:
+
+```bash
+./code/template_instance.py --sub 01 --ses 01 --template code/dummy_template.yml
+```
 
 **Pros**: inputs object as provenance record?
 
