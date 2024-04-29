@@ -1,0 +1,7 @@
+#!/usr/bin/env cwl-runner
+
+cwl:tool: ../../../code/dummy_glob_inputs.cwl
+
+basedir:
+  class: Directory
+  location: ../../../rawdata/sub-02/ses-01/

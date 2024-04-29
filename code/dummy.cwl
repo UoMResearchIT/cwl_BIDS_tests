@@ -5,9 +5,7 @@ baseCommand: ls
 stdout: dummy.out
 
 inputs:
-  files:
-    type: File[]
-    inputBinding: {}
+  files: File[]
 outputs:
   log:
     type: File

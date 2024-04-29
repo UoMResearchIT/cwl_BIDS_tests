@@ -1,8 +1,6 @@
 cwlVersion: v1.2
 class: Workflow
-
-requirements:
-  InlineJavascriptRequirement: {}
+label: 
 
 inputs:
   basedir: Directory

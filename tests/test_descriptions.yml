@@ -14,3 +14,11 @@
   tags: [ alternatives ]
   output:
     log: { class: File, basename: "dummy.out" }
+
+- id: glob_inputs
+  tool: ../code/glob_inputs.cwl
+  job: glob_inputs.yml
+  tags: [ utils ]
+  output:
+    matches: [{ class: File, basename: "sub-01_ses-01_inv-400_IRT1.nii.gz" },
+              { class: File, basename: "sub-01_ses-01_inv-800_IRT1.nii.gz" }]

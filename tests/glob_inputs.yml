@@ -1,0 +1,7 @@
+patterns:
+  - "./**/*_inv-400_IRT1.nii.gz"
+  - "*/anat/*_inv-800_IRT1.nii.gz"
+
+basedir: 
+  class: "Directory"
+  path: "../rawdata/sub-01"
