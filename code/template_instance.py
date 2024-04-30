@@ -1,17 +1,20 @@
 #!/usr/bin/env python
 
 """
-Command-line tool for creating a new instance of a template.
+Command-line tool for creating instances of input/config files for BIDS
+workflows, based on a template.
 
 Renders a Jinja2 TEMPLATE file, replacing tokens {{sub}}, {{ses}},
-and {{name}}, and writing the result to the file: TARGET/NAME.ext
+{{name}}, and {{basedir}} and writing the result to TARGET/NAME.EXT
 
-The TARGET directory is created if it does not exist. By default, the NAME
-is extracted from the template's `cwl:tool: path/to/NAME.cwl` basename, and
-the TARGET directory is 'derivatives/SUB/NAME/'. Extension is preserved
-from the template file.
+By default, the TARGET directory is 'derivatives/SUB/NAME/', and NAME is
+extracted from the template's `cwl:tool: path/to/NAME.cwl` basename. The
+TARGET directory will be created if it does not exist. The file extension
+EXT is preserved from the template.
 
-All paths are relative to the BASEDIR, if provided.
+Paths for TEMPLATE and TARGET can be relative to BASEDIR. For consistency,
+the {{basedir}} token should be used in the TEMPLATE file for any relative
+paths, as these may change depending on TARGET.
 """
 
 import argparse
@@ -32,8 +35,9 @@ parser.add_argument("--basedir", required=False, default=None, help="Base direct
 
 def create_instance(template, sub, ses, target = parser.get_default('target'), name = None, basedir = None):
 
-  if basedir is not None:
+  if basedir:
     os.chdir(basedir)
+  basedir = os.getcwd()
 
   # Load the template file
   with open(template, "r") as f:
@@ -56,11 +60,15 @@ def create_instance(template, sub, ses, target = parser.get_default('target'), n
     "sub": sub,
     "ses": ses,
     "name": name,
+    "basedir": basedir
   }
 
   # Create the target directory
   target_dir = jinja2.Template(target).render(tokens)
   os.makedirs(target_dir, exist_ok=True)
+
+  target_dir = os.path.abspath(target_dir)
+  tokens["basedir"] = os.path.relpath(basedir, target_dir)
   
   # Render the template
   instance = jinja2.Template(template_str).render(tokens)

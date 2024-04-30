@@ -1,10 +1,12 @@
+{# Template to be parsed by template_instance.py #}
+{# and written to "{{basedir}}/derivatives/{{sub}}/dummy/dummy.cwl" #}
 #!/usr/bin/env cwl-runner
-cwl:tool: ../../../code/dummy.cwl
+cwl:tool: {{basedir}}/code/dummy.cwl
 
 files:
   - class: File
-    path: ../../../rawdata/{{sub}}/{{ses}}/anat/{{sub}}_{{ses}}_inv-400_IRT1.nii.gz
+    path: {{basedir}}/rawdata/{{sub}}/{{ses}}/anat/{{sub}}_{{ses}}_inv-400_IRT1.nii.gz
   - class: File
-    path: ../../../rawdata/{{sub}}/{{ses}}/anat/{{sub}}_{{ses}}_inv-800_IRT1.nii.gz
+    path: {{basedir}}/rawdata/{{sub}}/{{ses}}/anat/{{sub}}_{{ses}}_inv-800_IRT1.nii.gz
   - class: File
-    path: ../../../rawdata/{{sub}}/{{ses}}/anat/{{sub}}_{{ses}}_inv-1000_IRT1.nii.gz
+    path: {{basedir}}/rawdata/{{sub}}/{{ses}}/anat/{{sub}}_{{ses}}_inv-1000_IRT1.nii.gz

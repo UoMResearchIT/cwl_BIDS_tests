@@ -9,9 +9,10 @@ from ..code.template_instance import create_instance
 def template():
 
     template = """
+{# this is a comment #}
 #!/usr/bin/env cwl-runner
-cwl:tool: code/workflow.cwl
-foo: {class: File, path: rawdata/{{sub}}/{{ses}}/foo.txt}
+cwl:tool: {{basedir}}/code/workflow.cwl
+foo: {class: File, path: {{basedir}}/rawdata/{{sub}}/{{ses}}/foo.txt}
 """
     sub = "A"
     ses = "01"
@@ -19,8 +20,8 @@ foo: {class: File, path: rawdata/{{sub}}/{{ses}}/foo.txt}
 
     instance = """
 #!/usr/bin/env cwl-runner
-cwl:tool: code/workflow.cwl
-foo: {class: File, path: rawdata/sub-A/ses-01/foo.txt}
+cwl:tool: ../../../code/workflow.cwl
+foo: {class: File, path: ../../../rawdata/sub-A/ses-01/foo.txt}
 """
     template_file = os.path.join("code", name + ".yml")
 
@@ -39,7 +40,7 @@ def test_create_instance(template):
 
     # Call the function to create an instance
     out_file = create_instance(template_file, sub, ses, basedir = temp_dir)
-    assert out_file == os.path.join("derivatives", "sub-" + sub, name, name + ".yml")
+    assert out_file == os.path.join(temp_dir, "derivatives", "sub-" + sub, name, name + ".yml")
     assert os.path.exists(out_file)
     with open(out_file, 'r') as f:
         assert f.read().strip() == instance.strip()
