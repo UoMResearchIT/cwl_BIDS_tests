@@ -16,12 +16,38 @@ the {{basedir}} token should be used in the TEMPLATE file for any relative
 paths, as these may change depending on TARGET.
 """
 
+_epilog = """
+Example:
+
+  Given a TEMPLATE file 'workflow.yml.jinja' with contents:
+
+    #!/usr/bin/env cwl-runner
+    cwl:tool: {{basedir}}/code/workflow.cwl
+    my_input:
+      - class: File
+        path: {{basedir}}/rawdata/{{sub}}/{{ses}}/foo.txt}
+
+  The command:
+
+  $ python template_instance.py --sub X --ses Y --template workflow.yml.jinja
+
+  Will create 'derivatives/sub-X/ses-Y/workflow.yml' with contents:
+
+    #!/usr/bin/env cwl-runner
+    cwl:tool: ../../../code/workflow.cwl
+    my_input:
+      - class: File
+        path: ../../../rawdata/sub-X/ses-Y/foo.txt
+  
+"""
+
 import argparse
 import jinja2
 import os
 
 parser = argparse.ArgumentParser(description=__doc__,
-                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+                                 formatter_class=argparse.RawDescriptionHelpFormatter,
+                                 epilog=_epilog)
 parser.add_argument("--sub", required=True, help="Subject label ('sub-' prefix will be added if missing)")
 parser.add_argument("--ses", required=True, help="Session label ('ses-' prefix will be added if missing)")
 parser.add_argument("--template", required=True, help="Input-object template")
